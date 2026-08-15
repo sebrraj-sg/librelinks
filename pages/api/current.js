@@ -1,15 +1,19 @@
-import serverAuth from '@/lib/serverAuth';
-
+// pages/api/current.js
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
-    return res.status(405).end();
+    return res.status(405).json({ message: 'Method Not Allowed' });
   }
 
   try {
-    const { currentUser } = await serverAuth(req, res);
+    // Replace with real session/auth check & database query
+    const currentUser = {
+      id: "usr_123",
+      email: "user@example.com",
+      name: "John Doe",
+    };
 
     return res.status(200).json(currentUser);
   } catch (error) {
-    return res.status(400).end();
+    return res.status(500).json({ error: 'Internal Server Error' });
   }
 }
