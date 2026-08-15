@@ -1,4 +1,8 @@
 import { auth } from "@/lib/auth";
-import { toNextJsHandler } from "better-auth/node";
+import { toNodeHandler } from "better-auth/node";
 
-export default toNodeHandler(auth);
+const handler = toNodeHandler(auth);
+
+export default async function authHandler(req, res) {
+  return handler(req, res);
+}
